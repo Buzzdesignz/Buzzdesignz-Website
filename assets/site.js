@@ -19,6 +19,15 @@
       cards.forEach(function (card) { card.classList.toggle('is-hidden', f !== 'all' && card.getAttribute('data-cat') !== f); });
     });
   });
+  // currency switch
+  var curs = document.querySelectorAll('[data-cur]');
+  curs.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var k = c.getAttribute('data-cur');
+      curs.forEach(function (x) { var on = x === c; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      document.querySelectorAll('[data-ngn]').forEach(function (el) { el.textContent = el.getAttribute('data-' + k); });
+    });
+  });
   // footer year
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
